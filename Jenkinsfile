@@ -17,6 +17,11 @@ pipeline {
             steps {
                 sh 'mvn install -DskipTests'
             }
+            post {
+                success {
+                    echo 'Now Archiving...'
+                }
+            }
         }
 
 		stage('Test') {
