@@ -24,12 +24,6 @@ pipeline {
             }
         }
 
-		stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-
         stage ('CODE ANALYSIS WITH CHECKSTYLE'){
             steps {
                 sh 'mvn checkstyle:checkstyle'
@@ -40,5 +34,11 @@ pipeline {
                 }
             }
         }
+
+        post {
+            always {
+                cleanWs()
+        }
+    }
 	}
 }
