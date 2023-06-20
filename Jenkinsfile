@@ -40,24 +40,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Build App Image') {
-            steps {
-                script {
-                    dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", ".")
-                }
-            }
-        }
-
-        stage('Upload App Image') {
-          steps{
-            script {
-                docker.withRegistry( jenkinsRegistry, registryCredential ) {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')
-                    }
-                }
-            }
-        }
     }
 }
