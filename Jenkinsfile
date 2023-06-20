@@ -4,17 +4,11 @@ pipeline {
 	    maven "Maven3"
 	    jdk "OracleJDK"
 	}
-
-    environment {
-        registryCredential = 'ecr:ap-south-1:awscreds'
-        appRegistry = "391579151008.dkr.ecr.ap-south-1.amazonaws.com/jenkinsappimg"
-        jenkinsRegistry = "https://391579151008.dkr.ecr.ap-south-1.amazonaws.com"
-    }
-
+	
 	stages {
         
         stage('fetch code') {
-            steps{
+            steps {
                git branch: 'main', url: "https://github.com/sa-prateek/training-project.git"
             }
         }
@@ -38,6 +32,12 @@ pipeline {
                 success {
                     echo 'Generated Analysis Result'
                 }
+            }
+        }
+
+	stage('Cleanup') {
+            steps {
+                deleteDir() // Delete the workspace
             }
         }
     }
