@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-	stage('Cleanup') {
+	    stage('Cleanup') {
             steps {
                 deleteDir() // Delete the workspace
             }
