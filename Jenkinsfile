@@ -3,10 +3,10 @@ pipeline {
 	
     tools {
 	    maven "Maven3"
-	    jdk "OracleJDK"
-	}
+	    jdk "OracleJDK"	
+    }
 	
-	stages {
+    stages {
         
         stage('fetch code') {
             steps {
