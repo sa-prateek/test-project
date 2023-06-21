@@ -1,12 +1,12 @@
 pipeline {
     agent any
-
+    
     // environment {
     //     registryCredential = 'ecr:ap-south-1:awscreds'
     //     appRegistry = "391579151008.dkr.ecr.ap-south-1.amazonaws.com/jenkinsappimg"
     //     jenkinsRegistry = "https://391579151008.dkr.ecr.ap-south-1.amazonaws.com"
     // }
-
+    
     stages {
         stage('fetch code') {
             steps {
@@ -46,7 +46,6 @@ pipeline {
                 }
             }
         }
-
 /*
         stage('Build App Image') {
             steps {
@@ -55,7 +54,6 @@ pipeline {
                 }
             }
         }
-
 
         stage('Upload App Image') {
           steps{
@@ -77,7 +75,6 @@ pipeline {
             }
         }
 */
-
         stage('Cleanup') {
             steps {
                 deleteDir() // Delete the workspace
