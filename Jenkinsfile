@@ -1,5 +1,12 @@
 pipeline {
     agent any
+
+    // environment {
+    //     registryCredential = 'ecr:ap-south-1:awscreds'
+    //     appRegistry = "391579151008.dkr.ecr.ap-south-1.amazonaws.com/jenkinsappimg"
+    //     jenkinsRegistry = "https://391579151008.dkr.ecr.ap-south-1.amazonaws.com"
+    // }
+
     stages {
         stage('fetch code') {
             steps {
@@ -37,6 +44,43 @@ pipeline {
                 success {
                     echo 'Generated Analysis Result'
                 }
+            }
+        }
+
+/*
+        stage('Build App Image') {
+            steps {
+                script {
+                    dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", ".")
+                }
+            }
+        }
+
+
+        stage('Upload App Image') {
+          steps{
+            script {
+                docker.withRegistry( jenkinsRegistry, registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
+            }
+        }
+        
+        stage('Run Container') {
+            steps {
+                script {
+                    def portMapping = '3000:8080'
+                    sh "docker run -d -p ${portMapping} --name my-container ${appRegistry}:${BUILD_NUMBER}"
+                }
+            }
+        }
+*/
+
+        stage('Cleanup') {
+            steps {
+                deleteDir() // Delete the workspace
             }
         }
     }
