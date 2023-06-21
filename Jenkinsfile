@@ -18,6 +18,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Unit test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                success {
+                    echo 'Test Successful...'
+                }
+            }
+        }
         
         stage ('CODE ANALYSIS WITH CHECKSTYLE'){
             steps {
