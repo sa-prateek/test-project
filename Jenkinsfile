@@ -75,10 +75,5 @@ pipeline {
             }
         }
 */
-        stage('Cleanup') {
-            steps {
-                deleteDir() // Delete the workspace
-            }
-        }
     }
 }
