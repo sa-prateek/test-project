@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    
     // environment {
     //     registryCredential = 'ecr:ap-south-1:awscreds'
     //     appRegistry = "391579151008.dkr.ecr.ap-south-1.amazonaws.com/jenkinsappimg"
